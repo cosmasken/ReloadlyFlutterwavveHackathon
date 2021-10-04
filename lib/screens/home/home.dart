@@ -125,29 +125,54 @@ class _HomeState extends State<Home> {
                     image: 'assets/products/chair.png',
                   ),
                 ),
-                Product(
-                  title: "West Stool",
-                  location: 'Ikoyi',
-                  image: 'assets/products/chair.png',
+                GestureDetector(
+                  onTap: (){
+                    Get.to(()=>Details());
+                  },
+                  child: Product(
+                    title: "West Stool",
+                    location: 'Ikoyi',
+                    image: 'assets/products/chair.png',
+                  ),
                 ),
-                Product(
-                  title: "West Stool",
-                  location: 'Ikoyi',
-                  image: 'assets/products/chair.png',
-                ), Product(
-                  title: "West Stool",
-                  location: 'Ikoyi',
-                  image: 'assets/products/chair.png',
+                GestureDetector(
+                  onTap: (){
+                    Get.to(()=>Details());
+                  },
+                  child: Product(
+                    title: "West Stool",
+                    location: 'Ikoyi',
+                    image: 'assets/products/chair.png',
+                  ),
+                ), GestureDetector(
+                  onTap: (){
+                    Get.to(()=>Details());
+                  },
+                  child: Product(
+                    title: "West Stool",
+                    location: 'Ikoyi',
+                    image: 'assets/products/chair.png',
+                  ),
                 ),
-                Product(
-                  title: "West Stool",
-                  location: 'Ikoyi',
-                  image: 'assets/products/chair.png',
+                GestureDetector(
+                  onTap: (){
+                    Get.to(()=>Details());
+                  },
+                  child: Product(
+                    title: "West Stool",
+                    location: 'Ikoyi',
+                    image: 'assets/products/chair.png',
+                  ),
                 ),
-                Product(
-                  title: "West Stool",
-                  location: 'Ikoyi',
-                  image: 'assets/products/chair.png',
+                GestureDetector(
+                  onTap: (){
+                    Get.to(()=>Details());
+                  },
+                  child: Product(
+                    title: "West Stool",
+                    location: 'Ikoyi',
+                    image: 'assets/products/chair.png',
+                  ),
                 ),
 
               ],
