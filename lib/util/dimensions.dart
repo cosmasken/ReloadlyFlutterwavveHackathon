@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Dimensions {
   static double defaultTextSize = 14.00;
   static double smallTextSize = 12.00;
@@ -11,4 +13,9 @@ class Dimensions {
   static const double widthSize = 10.00;
   static const double radius = 10.00;
   static const double buttonHeight = 45.00;
+}
+const double baseHeight = 650.0;
+
+double screenAwareSize(double size, BuildContext context) {
+  return size * MediaQuery.of(context).size.height / baseHeight;
 }

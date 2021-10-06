@@ -43,6 +43,7 @@ class Logout extends StatelessWidget{
       ),
       child: GestureDetector(
         onTap: (){
+
           Get.to(()=>AfterLogout());
         },
         child: Container(

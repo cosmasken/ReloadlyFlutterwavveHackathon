@@ -11,4 +11,6 @@ class CustomColor {
   static Color greenColor = Color(0xFF03A60F);
   static Color greenLightColor = Color(0xFFE5F6E7);
   static Color blueColor = Color(0xFF307AFF);
+  static const themeColor = Color(0xfff5a623);
+  static const greyColor2 = Color(0xffE8E8E8);
 }

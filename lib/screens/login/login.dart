@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:swarp/components/buttons/primary_button.dart';
@@ -9,6 +10,7 @@ import 'package:swarp/screens/home/home.dart';
 import 'package:swarp/theme/colors.dart';
 
 import '../homepage.dart';
+import '../registration.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -16,11 +18,14 @@ class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
 }
-//final AuthController authController = Get.find();
+final _auth = FirebaseAuth.instance;
 class _LoginState extends State<Login> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool remember = false;
+  late String email;
+  late String password;
+  bool showSpinner = false;
  // AuthController authController =Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
@@ -91,31 +96,46 @@ class _LoginState extends State<Login> {
                 child: PrimaryButton(
                   padding: const EdgeInsets.symmetric(vertical: 15),
                   buttonText: 'Sign In',
-                  onPressed: () {
-                    Get.to(MyHomePage());
-                    /*authController.login(
-                      email: usernameController.text,
-                      password: passwordController.text,
-                    );*/
+                  onPressed:  () async {
+                      setState(() {
+                        showSpinner = true;
+                      });
+                      try {
+                        final user = await _auth.signInWithEmailAndPassword(
+                            email: usernameController.text, password: passwordController.text);
+                        if (user != null) {
+                          Get.to(MyHomePage());
+                        }
+                      } catch (e) {
+                        print(e);
+                      }
+                      setState(() {
+                        showSpinner = false;
+                      });
                   },
                   elevation: 0,
                 ),
               ),
-              Container(
-                  margin: const EdgeInsets.only(top: 10),
-                  child: RichText(
-                    text: const TextSpan(
-                        text: "Don't have an account yet?",
-                        children: [
-                          TextSpan(
-                              text: 'Sign up',
-                              style: TextStyle(
-                                  color: AppColors.primary,
-                                  decoration: TextDecoration.underline))
-                        ],
-                        style: TextStyle(
-                            color: Colors.black38, fontWeight: FontWeight.bold)),
-                  ))
+              GestureDetector(
+                onTap: (){
+                  Get.to(()=>Register());
+                },
+                child: Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    child: RichText(
+                      text: const TextSpan(
+                          text: "Don't have an account yet?",
+                          children: [
+                            TextSpan(
+                                text: 'Sign up',
+                                style: TextStyle(
+                                    color: AppColors.primary,
+                                    decoration: TextDecoration.underline))
+                          ],
+                          style: TextStyle(
+                              color: Colors.black38, fontWeight: FontWeight.bold)),
+                    )),
+              )
             ],
         ),
           ),

@@ -1,14 +1,18 @@
-/*
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart' as dio;
+import 'package:swarp/model/country.dart'as country;
+import 'package:swarp/model/gift_card.dart';
+import 'package:swarp/model/token.dart';
 
 
 
 class ReloadlyController extends GetxController{
   late TextEditingController numberTextController;
+  var countries = <country.Country>[].obs;
 
   @override
   void onInit() {
@@ -34,8 +38,7 @@ class ReloadlyController extends GetxController{
   var currencyCode= ''.obs;
   var currencyName= ''.obs;
   var updatedAt = ''.obs;
-*/
-/*  data: {
+ /* data: {
   "operatorId":"1",
   "amount":"1",
   "useLocalAmount": false,
@@ -48,7 +51,7 @@ class ReloadlyController extends GetxController{
   "countryCode": "CA",
   "number": "1231231231"
   }
-  }*//*
+  }*/
 
   Future<void> getCountries() async {
     var net = dio.Dio();
@@ -73,7 +76,7 @@ class ReloadlyController extends GetxController{
     } catch (error, stacktrace) {
       throw Exception("Exception occured: $error stackTrace: $stacktrace");
     }
-    try{
+   /* try{
       dio.Response token = await net.get(countriesUrl,
           options: dio.Options(
             headers: {
@@ -82,11 +85,16 @@ class ReloadlyController extends GetxController{
             },
           ));
 
-      print(token.toString());
+      Map<String, dynamic> map = json.decode(token.toString());
+      //balance.value =map["name"].toString() ;
+     // countries.value.add(value);
+      //return map["name"].toString();
+      final contents = Country.fromJson(json.decode(token.data));
+     print(map);
 
     } catch (error, stacktrace) {
       throw Exception("Exception occured: $error stackTrace: $stacktrace");
-    }
+    }*/
   }
 
   void getToken() async {
@@ -150,11 +158,10 @@ class ReloadlyController extends GetxController{
           ));
 
       print(token.toString());
-     */
-/* Map<String, dynamic> map = json.decode(token.toString());
+ Map<String, dynamic> map = json.decode(token.toString());
       balance.value =map["balance"].toString() ;
       return map["balance"].toString();
-*//*
+
 
     } catch (error, stacktrace) {
       throw Exception("Exception occured: $error stackTrace: $stacktrace");
@@ -204,8 +211,7 @@ class ReloadlyController extends GetxController{
   }
 
   //fetch gift cards
-  */
-/*Future<List<Content>> fetchGiftCards() async {
+Future<List<Content>> fetchGiftCards() async {
     var tokenOption = {
       "client_id": clientId,
       "client_secret": secretId,
@@ -253,7 +259,7 @@ class ReloadlyController extends GetxController{
     final contents = GiftCard.fromJson(json.decode(response.body));
 
     return contents.content;
-  }*//*
+  }
 
 
-}*/
+}

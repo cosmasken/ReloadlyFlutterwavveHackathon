@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:swarp/screens/login/login.dart';
 
 class AfterLogout extends StatelessWidget{
   @override
@@ -27,10 +28,15 @@ class AfterLogout extends StatelessWidget{
           const Text("You can go back home and continue trading",
             style: TextStyle( color: Colors.white,fontWeight: FontWeight.bold),),
           SizedBox(height: 10,),
-          const Text("LOG IN",
-            style: TextStyle( color: Color(0xfff08e1a),
-                fontSize: 20,
-                fontWeight: FontWeight.bold),),
+          GestureDetector(
+            onTap: (){
+              Get.to(()=>Login());
+            },
+            child: const Text("LOG IN",
+              style: TextStyle( color: Color(0xfff08e1a),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),),
+          ),
 
         ],
       ),
